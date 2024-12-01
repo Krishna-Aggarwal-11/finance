@@ -61,9 +61,9 @@ const app = new Hono().get(
         .where(
           and(
             accountId ? eq(transactions.accountId, accountId) : undefined,
-            eq(accounts.userId, userId),
-            gte(transactions.date, startDate),
-            lte(transactions.date, endDate)
+            userId ? eq(accounts.userId, userId) : undefined,
+            startDate && gte(transactions.date, startDate),
+            endDate && lte(transactions.date, endDate)
           )
         );
     }
@@ -77,7 +77,6 @@ const app = new Hono().get(
       auth.userId,
       lastperiodStart,
       lastperiodEnd
-      
     );
 
     const incomeChange = calculatePercentageChnage(

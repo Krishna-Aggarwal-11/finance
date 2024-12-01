@@ -32,7 +32,7 @@ type Props = {
                 }} />
                 <Tooltip content={<CategoryTooltip />}  />
                 <Pie data={data} innerRadius={60} cx="50%" cy="50%" outerRadius={90} paddingAngle={2} fill="#8884d8" dataKey={"value"} labelLine={false}>
-                    {data.map((_entry, index) => (
+                    {data && data.map((_entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}
                         />
                     ))}
