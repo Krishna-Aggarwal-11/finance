@@ -6,6 +6,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { QueryProvider } from "@/providers/query-provider";
 import { SheetProvider } from "@/providers/sheet-provider";
 import { Toaster } from "sonner";
+import { Suspense } from "react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -35,10 +36,10 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <QueryProvider>
-            <SheetProvider/>
+            <SheetProvider />
             <Toaster />
-            {children}
-            </QueryProvider>
+            <Suspense>{children}</Suspense>
+          </QueryProvider>
         </body>
       </html>
     </ClerkProvider>
